@@ -1,0 +1,212 @@
+<% layout("/layouts/boilerplate") %>
+
+<!-- <%= success %>  use flash here -->
+ 
+<body>
+    <!-- <h3>All Listings</h3> -->
+    <!-- <form method="get" action="/listings/new">
+        <button>Create New Listing</button>
+    </form> -->
+    <style>
+        #filters{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center ;
+        }
+
+        .filter{
+            text-align: center;
+            margin-right: 2rem;
+            margin-top: 2rem;
+            opacity: 0.7;
+        }
+
+        .filter:hover{
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .filter p {
+            font-size: 0.8rem;
+        }
+
+        .tax-info{
+            display: none;
+        }
+
+        .tax-toggle{
+            border: 1px solid black;
+            border-radius: 1rem;
+            height: 3.25rem;
+            padding: 1rem;
+            margin-left: 2rem;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+
+    <div id="filters">
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-fire"></i> <!-- Copy pest from fontawesome -->
+                <p>Trending</p>
+            </div>
+        </div>
+
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-bed"></i> <!-- Copy pest from fontawesome -->
+                <p>Rooms</p>
+            </div>
+        </div>
+
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-mountain-city"></i> <!-- Copy pest from fontawesome -->
+                <p>Iconic Cities</p>
+            </div>
+        </div>
+
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-mountain"></i> <!-- Copy pest from fontawesome -->
+                <p>Mountaiins</p>
+            </div>
+        </div>
+
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-fort-awesome"></i> <!-- Copy pest from fontawesome -->
+                <p>Castles</p>
+            </div>
+        </div>
+
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-person-swimming"></i> <!-- Copy pest from fontawesome -->
+                <p>Amazing Pools</p>
+            </div>
+        </div>
+
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-campground"></i> <!-- Copy pest from fontawesome -->
+                <p>Camping</p>
+            </div>
+        </div>
+
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-cow"></i> <!-- Copy pest from fontawesome -->
+                <p>Farms</p>
+            </div>
+        </div>
+
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-snowflake"></i> <!-- Copy pest from fontawesome -->
+                <p>Arctic</p>
+            </div>
+        </div>
+
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-igloo"></i> <!-- Copy pest from fontawesome -->
+                <p>Domes</p>
+            </div>
+        </div>
+
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-ship"></i> <!-- Copy pest from fontawesome -->
+                <p>Boats</p>
+            </div>
+        </div>
+
+        <div class="tax-toggle">
+            <div class="form-check-reverse form-switch">
+                <input type="checkbox"
+                        class="form-check-input"
+                        role="switch"
+                        id="flexSwitchCheckDefault"
+                    />
+                <label class="form-check-label" for="flexSwitchCheckDefault">
+                    Display total after Taxes
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- row-cols-lg-3 when srceen size is large (lg) it will show minimum 3 cards in a row -->
+    <!-- row-cols-md-2 when srceen size is medium (md) it will show minimum 2 cards in a row -->
+    <!-- row-cols-sm-1 when srceen size is small (sm) it will show minimum 1 cards in a row -->
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+
+    <!-- This is the loop that will display all the listings -->
+    <% for(let listing of allListings) {%> 
+
+        <a href="/listings/<%= listing._id %>" class="listing-link">
+            <div class="card col listing-card">
+                <img src="<%= listing.image.url %>" 
+                    class="card-img-top" 
+                    alt="listing_image" 
+                    style="height: 20rem;"
+                >
+
+
+                <!-- card-img-overlay is used to add text and change BG color of card  on hover occur on the image -->
+                <div class="card-img-overlay"></div>
+                      
+
+
+                <div class="card-body">
+                    <p class="card-text">
+                        <b><%= listing.title %> </b>
+                        <br>
+                        <%= listing.price.toLocaleString("en-IN") %> / Night 
+                        <i class="tax-info"> &nbsp; &nbsp; + 18% GST </i>
+                    </p>
+                </div>
+            </div>
+        </a>
+
+    <% } %>
+
+        
+    </div>
+
+    <script>
+        let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+        taxSwitch.addEventListener("click",()=>{
+            // console.log("Clicked !");
+            let taxInfo = document.getElementsByClassName("tax-info");
+            for (info of taxInfo){
+                if(info.style.display != "inline"){
+                info.style.display = "inline";
+                }
+                else{
+                    info.style.display = "none";
+                }
+            }
+
+        });
+    </script>
+
+
+
+
+
+    <!-- 
+    <ul>
+        <% for(let listing of allListings) {%>
+            <li><a href="/listings/<%= listing._id %>"><%= listing.title %></a></li>
+        <% } %>
+    </ul> -->
+    
+</body>
+</html>

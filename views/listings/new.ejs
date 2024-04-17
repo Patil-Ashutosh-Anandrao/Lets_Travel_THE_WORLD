@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HODOPHILES</title>
+</head>
+<body>
+    <% layout("/layouts/boilerplate") %>
+
+    <!-- divided the page into rows and columns -->
+    <div class="row">
+
+        <!-- col-8 means 8 columns wide out of 12 columns occupied by the form  -->
+        <!-- offset-2 means the form is moved 2 columns to the right -->
+        <div class="col-8 offset-2">
+            <br><br>
+
+            <h3> Create a New Listing </h3>
+
+             <form method="post" action="/listings"  
+                   novalidate class="needs-validation" 
+                   enctype="multipart/form-data" 
+                >
+                <!-- enctype is used to upload files -->
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="listing[title]" 
+                        placeholder="Add a Catchy Title" 
+                        class="form-control"
+                        required>
+
+                    <div class="valid-feedback"> Title Looks Good ! </div>
+
+                </div>
+                
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea type="text" name="listing[description]" 
+                            placeholder="Description" class="form-control" required>
+                    </textarea>
+                    <div class="invalid-feedback"> Please provide a short description.</div>
+                </div>
+                
+                <!-- 
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image Link</label>
+                    <input type="text" name="listing[image]" 
+                        placeholder="Image URL / Link" class="form-control">
+                </div> -->
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload Image</label>
+                    <input type="file" name="listing[image]" class="form-control"
+                    required >
+                </div>
+
+
+                <div class="row">
+
+                    <div class="mb-3 col-md-4">
+                        <label for="price" class="form-label">Price</label>
+                        <input  name="listing[price]" 
+                            placeholder="1800" class="form-control" required>
+
+                        <div class="invalid-feedback"> Price should be valid.</div>
+                    </div>
+                    
+
+                    <div class="mb-3 col-md-8">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" name="listing[country]" 
+                            placeholder="India" class="form-control" required />
+                        <div class="invalid-feedback"> Country should be valid.</div>
+                    </div>
+                    
+                </div>
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" name="listing[location]" 
+                        placeholder="Location" class="form-control" required/>
+                    <div class="invalid-feedback"> Location should be valid.</div>
+                </div>
+                
+                <br><br>
+                <button class="btn btn-dark add-btn">Add</button>
+
+            </form>
+            <br><br>
+
+        </div>
+    </div>
+    
+</body>
+</html>
